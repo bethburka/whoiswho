@@ -1,0 +1,67 @@
+var React = require('react'),
+    ReactDOM = require('react-dom');
+
+
+
+
+/** mountNode = document.getElementById("app"),
+ {Router,Route,Link}  = require('react-router');*/
+/** @jsx React.DOM */
+
+
+
+
+        var EmployeeProfile = React.createClass({
+            getInitialState: function(){
+                console.log(this.props);
+                return{
+
+                    employees:[
+                        {img:'/em_.jpg',name:'employee 01', title:'developer01',dep:'department 01', office:'Amsterdam', profile:'Hi I am developer 01'}
+                    ]
+
+                }
+            },
+
+        render:function(){
+            return(
+                <div className="container">
+                    <div className="row-spacer">
+                        <Prof names={this.state.employees} />
+
+                    </div>
+                </div>
+            )}
+        });
+
+var Prof = React.createClass({
+    render: function () {
+        var profileList = this.props.names.map(function (employee) {
+            return (
+                <div>
+                    <img className="img-responsible img-center" src="employee.img" alt=""/>
+                    <h4>{employee.name} </h4>
+                    <p> {employee.title}
+                        Department:{employee.dep}
+                        Office : {employee.office}
+                        Profile:{employee.profile} </p>
+                </div>)
+
+        });
+
+                return (
+                    <div >
+                        <div className="col-lg-4 col-lg-offset-4">
+                            <h1 >Profile</h1>
+                        </div>
+
+                        <ul className="list-unstyled">
+                            {profileList}
+                        </ul>
+                    </div>
+                )
+
+    }
+});
+
+ReactDOM.render(<EmployeeProfile /> ,document.getElementById('app'));
