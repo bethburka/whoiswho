@@ -4,8 +4,8 @@ var Home = React.createClass({
     render: function(){
         return(
             <div>
-            <Header className="bar bar-nav" text="All Emplyees" />
-                <a href="#" className="icon icon-left-nav pull-left">this</a>
+            <Header className="brnad" text="All Employees" />
+
             <Profile />
                 </div>
         )
@@ -15,7 +15,25 @@ var Home = React.createClass({
 var Header = React.createClass({
     render: function(){
         return(
+            <div>
+                <input type="checkbox" id="menuToggle"/>
+                    <label for="menuToggle" className="menu-icon">&#9776;</label>
+
+
             <h1 className="title">{this.props.text}</h1>
+
+                <nav className="menu">
+                    <ul>
+                        <li><a href="#">ALL EMPLOYEES</a></li>
+                        <li><a href="#">DEPARTMENTS</a></li>
+                        <li><a href="#">CALENDER</a></li>
+                        <li><a href="#">WHO'S NEW</a></li>
+                        <li><a href="#">SETTINGS</a></li>
+                    </ul>
+                </nav>
+
+
+                </div>
         )
     }
 });
