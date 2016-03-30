@@ -9,9 +9,10 @@ var EmployeeDetail = require('../components/EmployeeDetail');
 var Router = require('react-router');
 var Route = Router.Route;
 var IndexRoute = Router.IndexRoute;
+var browserHistory = Router.browserHistory;
 
 module.exports = (
-    <Route path="/" component={Main}>
+    <Route history={browserHistory} path="/" component={Main}>
         <Route path="profile/:id" component={Profile} />
         <Route path="EmployeeDetail/:id" component={EmployeeDetail} />
         <IndexRoute component={Home} />

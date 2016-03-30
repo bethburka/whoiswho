@@ -8,9 +8,9 @@ var Router = require('react-router');
 var SearchBar = React.createClass({
     render: function(){
         return (
-            <form id="search-form" class="form-in">
-            <div class="input-group">
-                <input type="text" class="search-form" placeholder="Search" />
+            <form id="search-form" className="form-in">
+            <div className="input-group">
+                <input type="text" className="search-form" placeholder="Search" />
               </div>
                 </form>
         )
