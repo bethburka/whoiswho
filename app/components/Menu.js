@@ -11,8 +11,7 @@ var Menu = React.createClass({
     render: function(){
         return <div style={this.props.style}>
             <div>
-                Menu content
-                <MenuItem push="/firstpage">menuItem</MenuItem>
+                <MenuItem push="/firstpage"/>
             </div>
         </div>;
     }
