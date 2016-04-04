@@ -170,9 +170,11 @@ var Profile= React.createClass({
         ]
 
         return(
-            <div className="container">
+
+            <div >
                 <SearchBar names={Employees} onUpdate={this.onUpdate}/>
-                <EmployeeList names={this.state.arrayEmployee} />
+                <EmployeeList names={Employees} />
+
                 <SortList/>
 
 

@@ -119,9 +119,9 @@ var SorfList = React.createClass({
             'default': {
                 sortListStyle: {
                     height: '500px',
-                    position: 'absolute',
+                  position:'absolute',
                     top: '15%',
-                    paddingLeft :'15px',
+                    paddingLeft :'10px',
                     right: '15px'
                 }
             }
