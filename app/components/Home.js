@@ -74,7 +74,7 @@ var Body = React.createClass({
     render: function(){
         return(
             <div style={this.props.style}>
-                <Header className="brnad" text="All Employees" onUpdate={this.onUpdate} />
+                <Header  text="All Employees" onUpdate={this.onUpdate} />
                 <Profile />
             </div>
         )

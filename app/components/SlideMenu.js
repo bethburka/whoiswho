@@ -16,7 +16,6 @@ var SidePanel = React.createClass ({
         return(
             <div style={this.props.style}>
                 <Menu alignment="right"/>
-                    
             </div>
         );
         //
