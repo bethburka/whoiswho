@@ -10,15 +10,19 @@ var Home = React.createClass({
         return {
             'default': {
                 menuHiddenTrue: {
-                    right:'-250px',
-                    transition:'.margin-right .5s',
-                    width: '250px'
+                    position: 'fixed',
+                    width:'250px',
+                    transition:'right .5s',
+                    top: '90',
+                    right: '-250'
+
                 },
                 menuHiddenFalse: {
-                    right:'0px',
-                    width: '250px',
-                    height: '100%' ,
-                    transition:'right 0.3s ease'
+                    position: 'fixed',
+                    width:'250px',
+                    transition:'right 0.5s',
+                    top: '90',
+                    right: '0'
                 },
                 bodyHiddenTrue:{
                     marginLeft:'-250px',
@@ -72,9 +76,7 @@ var Body = React.createClass({
     render: function(){
         return(
             <div style={this.props.style}>
-
-
-
+                
                 <Header text="All Employees" onUpdate={this.onUpdate} />
 
                 <Profile />
