@@ -9,6 +9,23 @@ var ReactCSS = require('reactcss');
 
 
 var SearchBar = React.createClass({
+    mixins: [ReactCSS.mixin],
+
+    classes: function() {
+        return {
+            'default': {
+                searchBarStyle: {
+                    position: 'fixed',
+                    background: 'white',
+                    width: '95%'
+                }
+            }
+        }
+    },
+
+    styles: function () {
+        return this.css()
+    },
 
     searchHandler: function(event){
         var searchKey = event.target.value;
@@ -29,11 +46,10 @@ var SearchBar = React.createClass({
 
     render: function(){
         return (
-            <form id="search-form" className="form-in">
-            <div className="input-group">
-                <input type="text" className="search-form" placeholder="Search"  onChange={this.searchHandler}/>
-              </div>
-                </form>
+                <div style={this.styles().searchBarStyle}>
+                    <input type="text" placeholder="Search"  onChange={this.searchHandler}/>
+                </div>
+
         )
     }
 });
@@ -80,8 +96,10 @@ var EmployeeList = React.createClass({
             'default': {
                 ulStyle: {
                     padding :'0px',
-                    paddingTop: '20px',
-                    listStyleType: 'none'
+                    paddingTop: '40px',
+                    listStyleType: 'none',
+                    width:'95%',
+                    float:'left'
                 }
             }
         }
@@ -119,6 +137,21 @@ var EmployeeList = React.createClass({
 });
 
 var Profile= React.createClass({
+    mixins: [ReactCSS.mixin],
+
+    classes: function() {
+        return {
+            'default': {
+                profileStyle: {
+                    paddingTop: '60px'
+                }
+            }
+        }
+    },
+
+    styles: function () {
+        return this.css()
+    },
 
     onUpdate:function (arrayMatches) {
         this.setState({arrayEmployee:arrayMatches});
@@ -174,7 +207,7 @@ var Profile= React.createClass({
 
         return(
 
-            <div >
+            <div style={this.styles().profileStyle}>
                 <SearchBar names={Employees} onUpdate={this.onUpdate}/>
                 <EmployeeList names={this.state.arrayEmployee} />
                 <SortList/>
