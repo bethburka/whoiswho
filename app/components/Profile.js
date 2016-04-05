@@ -12,10 +12,13 @@ var SearchBar = React.createClass({
 
     searchHandler: function(event){
         var searchKey = event.target.value;
+        searchKey = searchKey.toLowerCase();
         var arrayMatches = [];
         var patt = new RegExp(searchKey);
         this.props.names.forEach(function (employee) {
-            if(patt.test(employee.first_name) || patt.test(employee.last_name)){
+
+            var fullName = employee.first_name.toLowerCase() + " " + employee.last_name.toLowerCase();
+            if(patt.test(fullName)){
                 arrayMatches.push(employee);
             }
         });
@@ -173,8 +176,7 @@ var Profile= React.createClass({
 
             <div >
                 <SearchBar names={Employees} onUpdate={this.onUpdate}/>
-                <EmployeeList names={Employees} />
-
+                <EmployeeList names={this.state.arrayEmployee} />
                 <SortList/>
 
 

@@ -11,7 +11,6 @@ var Home = React.createClass({
             'default': {
                 menuHiddenTrue: {
                     right:'-250px',
-                    position:'absolute',
                     transition:'.margin-right .5s',
                     width: '250px'
                 },
@@ -91,7 +90,7 @@ var Header = React.createClass({
         return {
             'default': {
                 labelButtonStyle: {
-                    position: 'absolute',
+                  float:'right',
                     top: '5%',
                     paddingLeft :'15px',
                     paddingRight: '10px',
