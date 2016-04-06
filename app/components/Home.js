@@ -87,7 +87,7 @@ var Body = React.createClass({
 
     render: function(){
         return(
-            <div style={this.props.style}>
+            <div id="body" style={this.props.style}>
                 <Header text="All Employees" onUpdate={this.onUpdate} />
                 <Profile />
             </div>
@@ -103,7 +103,8 @@ var Header = React.createClass({
             'default': {
                 labelButtonStyle: {
                     float: 'right',
-                    paddingTop:'10px'
+                    paddingTop:'10px',
+                    paddingRight:'10px'
                 },
                 h1Style: {
                     display: 'inline'
@@ -111,7 +112,7 @@ var Header = React.createClass({
                 headerStyle:{
                     padding: '10px',
                     position: 'fixed',
-                    width: '95%',
+                    width: this.state.width,
                     height: '60px',
                     background: 'white',
                     textAlign:'center'
@@ -122,6 +123,20 @@ var Header = React.createClass({
 
     styles: function () {
         return this.css()
+    },
+
+    getInitialState: function() {
+        return {width: window.innerWidth - 30};
+    },
+
+    updateDimensions: function() {
+        var prueba = document.getElementById("body").offsetWidth;
+        this.setState({width: prueba});
+        console.log('updateDimension', this.state.width);
+
+    },
+    componentDidMount: function() {
+        window.addEventListener('resize', this.updateDimensions);
     },
 
     render: function(){

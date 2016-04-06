@@ -23,7 +23,8 @@ var Sort = React.createClass({
                 divStyle: {
                     width:'30px',
                     height:'20px',
-                    alignItems:'flex-start'
+                    alignItems:'flex-start',
+                    margin: 'auto'
 
                 }
             }
@@ -65,8 +66,7 @@ var Letter = React.createClass({
                 divStyle:{
                     width:'30px',
                     height:'500px',
-                    display: 'block',
-                    position: 'absolute',
+                    margin: 'auto'
                 }
             }
         }
