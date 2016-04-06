@@ -58,7 +58,8 @@ var Letter = React.createClass({
                     width: '30px',
                     height:'20px',
                     display: 'block',
-                    textAlign:'center'
+                    textAlign:'center',
+                    paddingTop:'2.5em'
                 },
                 deactivate: {
                     color: '#D8D8D8'
@@ -75,6 +76,7 @@ var Letter = React.createClass({
     styles: function () {
         return this.css()
     },
+
 
     render: function () {
 
@@ -117,7 +119,6 @@ var SorfList = React.createClass({
         return {
             'default': {
                 sortListStyle: {
-                    top: '15%',
                     height: '100%',
                     position:'fixed',
                     width:'5%',

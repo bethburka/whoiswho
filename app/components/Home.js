@@ -11,23 +11,22 @@ var Home = React.createClass({
             'default': {
                 menuHiddenTrue: {
                     position: 'fixed',
-                    width:'250px',
+                    width:'95%',
                     transition:'right .5s',
                     top: '90',
-                    right: '-250'
-
+                    right: '-95%'
                 },
                 menuHiddenFalse: {
                     position: 'fixed',
-                    width:'250px',
+                    width:'95%',
                     transition:'right 0.5s',
                     top: '90',
-                    right: '0'
+                    right: this.state.menuRightWidth//I need the -5% of home width
                 },
                 bodyHiddenTrue:{
                     width:'100%',
                     height: '100%',
-                    marginLeft:'-250px',
+                    marginLeft:'-95%',
                     transition:'margin-left .5s',
                     overflow: 'hidden'
                 },
@@ -53,10 +52,26 @@ var Home = React.createClass({
         return this.css()
     },
 
+    updateMenuRightPos: function () {
+      var container = document.getElementById("container");
+        var style = container.currentStyle || window.getComputedStyle(container);
+        var margin = parseInt(style.marginLeft.substring(0,style.marginLeft.length -2));
+        var padding = parseInt(style.paddingLeft.substring(0,style.paddingLeft.length -2));
+        var width = container.offsetWidth;
+        var size = (margin + padding + (width*0.05))*-1;
+      this.setState({menuRightWidth: size});
+    },
+
+    componentDidMount: function() {
+        window.addEventListener('resize', this.updateMenuRightPos);
+        this.updateMenuRightPos();
+    },
+
     getInitialState: function()
     {
         return ({
-            mHidden: true
+            mHidden: true,
+            menuRightWidth: 0
         });
     },
 
@@ -69,7 +84,7 @@ var Home = React.createClass({
 
     render: function () {
         return(
-            <div style={this.styles().homeStyle}>
+            <div id="home" style={this.styles().homeStyle}>
                 <Body id="body" onUpdate={this.onUpdate} style={this.state.mHidden ? this.styles().bodyHiddenFalse : this.styles().bodyHiddenTrue}/>
                 <SlideMenu id="slideMenu" style={this.state.mHidden ? this.styles().menuHiddenTrue : this.styles().menuHiddenFalse}/>
             </div>
@@ -103,8 +118,7 @@ var Header = React.createClass({
             'default': {
                 labelButtonStyle: {
                     float: 'right',
-                    paddingTop:'10px',
-                    paddingRight:'10px'
+                    paddingTop:'10px'
                 },
                 h1Style: {
                     display: 'inline'
@@ -126,17 +140,16 @@ var Header = React.createClass({
     },
 
     getInitialState: function() {
-        return {width: window.innerWidth - 30};
+        return {width: 0};
     },
 
     updateDimensions: function() {
         var prueba = document.getElementById("body").offsetWidth;
         this.setState({width: prueba});
-        console.log('updateDimension', this.state.width);
-
     },
     componentDidMount: function() {
         window.addEventListener('resize', this.updateDimensions);
+        this.updateDimensions();
     },
 
     render: function(){
