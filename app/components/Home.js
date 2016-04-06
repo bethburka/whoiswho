@@ -26,13 +26,23 @@ var Home = React.createClass({
                 },
                 bodyHiddenTrue:{
                     width:'100%',
+                    height: '100%',
                     marginLeft:'-250px',
-                    transition:'margin-left .5s'
+                    transition:'margin-left .5s',
+                    overflow: 'hidden'
                 },
                 bodyHiddenFalse:{
                     width:'100%',
+                    height: '100%',
                     marginLeft:'0px',
-                    transition:'margin-left .5s'
+                    transition:'margin-left .5s',
+                    overflow: 'hidden'
+
+                },
+                homeStyle:{
+                    width:'100%',
+                    height:'100%',
+                    overflow: 'hidden'
                 }
 
             }
@@ -59,7 +69,7 @@ var Home = React.createClass({
 
     render: function () {
         return(
-            <div>
+            <div style={this.styles().homeStyle}>
                 <Body id="body" onUpdate={this.onUpdate} style={this.state.mHidden ? this.styles().bodyHiddenFalse : this.styles().bodyHiddenTrue}/>
                 <SlideMenu id="slideMenu" style={this.state.mHidden ? this.styles().menuHiddenTrue : this.styles().menuHiddenFalse}/>
             </div>
@@ -78,7 +88,6 @@ var Body = React.createClass({
     render: function(){
         return(
             <div style={this.props.style}>
-                
                 <Header text="All Employees" onUpdate={this.onUpdate} />
                 <Profile />
             </div>
@@ -120,7 +129,6 @@ var Header = React.createClass({
             <div style={this.styles().headerStyle}>
                 <h1 className="title" style={this.styles().h1Style}>{this.props.text}</h1>
                 <label for="menuToggle" className="menu-icon"  onClick={this.update} style={this.styles().labelButtonStyle}>&#9776; </label>
-
             </div>
         )
     },

@@ -96,10 +96,14 @@ var EmployeeList = React.createClass({
             'default': {
                 ulStyle: {
                     padding :'0px',
-                    paddingTop: '40px',
                     listStyleType: 'none',
-                    width:'95%',
                     float:'left'
+                },
+                divEmployeeListStyle:{
+                    overflow: 'hidden',
+                    paddingTop:'35px',
+                    width: '95%',
+                    display: 'inline-block'
                 }
             }
         }
@@ -126,7 +130,7 @@ var EmployeeList = React.createClass({
         });
 
         return(
-            <div id="list">
+            <div id="list" style={this.styles().divEmployeeListStyle}>
             <ul style={this.styles().ulStyle}>
                 {arrayLi}
             </ul>
