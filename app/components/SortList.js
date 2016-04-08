@@ -35,6 +35,7 @@ var Sort = React.createClass({
         return this.css()
     },
 
+
     orderList: function () {
 
     },
@@ -56,17 +57,17 @@ var Letter = React.createClass({
             'default': {
                 actived: {
                     width: '30px',
-                    height:'20px',
                     display: 'block',
                     textAlign:'center',
-                    paddingTop:'2.5em'
+                    marginTop: this.state.sortingPadding,
+                   marginBottom: this.state.sortingPadding// height/24 -20px
                 },
                 deactivate: {
                     color: '#D8D8D8'
                 },
                 divStyle:{
                     width:'30px',
-                    height:'500px',
+                   height:'80%',
                     margin: 'auto'
                 }
             }
@@ -76,6 +77,32 @@ var Letter = React.createClass({
     styles: function () {
         return this.css()
     },
+
+    getInitialState: function()
+    {
+        return ({
+            sortingPadding: 0
+        });
+    },
+
+    updateSortPadding:function(){
+        var alpabethHeight = document.getElementById("alphabet").offsetHeight;
+
+        console.log('alphaHight', alpabethHeight);
+        var size = ((alpabethHeight-400)/2)/24;
+        console.log('sixe',size);
+        this.setState({sortingPadding: size});
+        console.log(this.state.sortingPadding);
+
+    },
+
+    componentDidMount: function() {
+        window.addEventListener('resize', this.updateSortPadding);
+
+        this.updateSortPadding();
+    },
+
+
 
 
     render: function () {

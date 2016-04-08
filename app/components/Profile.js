@@ -17,7 +17,9 @@ var SearchBar = React.createClass({
                 searchBarStyle: {
                     position: 'fixed',
                     background: 'white',
-                    width: '95%'
+                    width: '95%',
+                    borderRadius:'15px'
+
                 }
             }
         }

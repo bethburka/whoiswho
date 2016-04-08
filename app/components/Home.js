@@ -60,6 +60,7 @@ var Home = React.createClass({
         var width = container.offsetWidth;
         var size = (margin + padding + (width*0.05))*-1;
       this.setState({menuRightWidth: size});
+
     },
 
     componentDidMount: function() {
@@ -146,6 +147,9 @@ var Header = React.createClass({
     updateDimensions: function() {
         var prueba = document.getElementById("body").offsetWidth;
         this.setState({width: prueba});
+
+
+
     },
     componentDidMount: function() {
         window.addEventListener('resize', this.updateDimensions);

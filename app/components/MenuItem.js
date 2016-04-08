@@ -4,20 +4,39 @@
 
 var React = require('react');
 var browserHistory = require('react-router').browserHistory;
+var ReactCSS =require('reactcss');
 
 var MenuItem = React.createClass({
-    navigate: function(push) {
-        browserHistory.push(push);
+
+    mixins: [ReactCSS.mixin],
+
+    classes: function() {
+        return {
+            'default': {
+                menuStyle: {
+                    paddingRight:'10em'
+                },
+
+              }
+        }
     },
 
-    render: function() {
+    styles: function () {
+        return this.css()
+    },
+
+
+
+  render: function() {
+
+
         return (
             <div>
-                <div className="menu-item" onClick={this.navigate.bind(this, this.props.push)}>{this.props.children}</div>
+                <div  style={this.styles().menuStyle}>{this.props.children}</div>
 
                 <h1 className="title">{this.props.text}</h1>
 
-                <nav className="menuNav">
+                <nav className="menu" style={this.styles().menuStyle}>
                     <ul>
                         <li><a href="#">ALL EMPLOYEES</a></li>
                         <li><a href="#">DEPARTMENTS</a></li>
@@ -31,5 +50,7 @@ var MenuItem = React.createClass({
         )
     }
 });
+
+
 
 module.exports = MenuItem;
