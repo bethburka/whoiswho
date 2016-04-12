@@ -1,11 +1,8 @@
-/**
- * Created by bethelehem.burka on 19/02/16.
- */
+/*global require module*/
 var React = require('react');
 var Main = require('../components/Main');
 var Home = require('../components/Home');
 var Profile= require('../components/Profile');
-var SlideMenu = require('../components/SlideMenu');
 
 var EmployeeDetail = require('../components/EmployeeDetail');
 var Router = require('react-router');

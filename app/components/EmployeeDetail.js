@@ -1,20 +1,27 @@
+/*global require module*/
+
 var React = require('react');
-var Router = require('react-router');
 var ReactCSS = require('reactcss');
 
 var  EmployeeDetail = React.createClass({
-
     mixins: [ReactCSS.mixin],
-
+    propTypes: {
+        img: React.PropTypes.string,
+        first_name: React.PropTypes.string,
+        last_name: React.PropTypes.string,
+        title: React.PropTypes.string,
+        office: React.PropTypes.string,
+        profile: React.PropTypes.string
+    },
     classes: function() {
         return {
             'default': {
                 liStyle: {
-                    paddingBottom: '10px',
+                    paddingBottom: '10px'
                 },
                 imgStyle:{
                     width:'100%',
-                    height:'100%',
+                    height:'100%'
                 },
                 imgEleStyle:{
                     paddingTop:'3em',
@@ -28,10 +35,6 @@ var  EmployeeDetail = React.createClass({
             }
         }
     },
-
-
-
-
     styles: function () {
         return this.css()
     },
@@ -60,9 +63,12 @@ var  EmployeeDetail = React.createClass({
     }
 });
 
-var Header = React.createClass({
+/*var Header = React.createClass({
     mixins: [ReactCSS.mixin],
-
+    propTypes: {
+        text: React.PropTypes.string,
+        onUpdate: React.PropTypes.func
+    },
     classes: function() {
         return {
             'default': {
@@ -88,23 +94,17 @@ var Header = React.createClass({
     styles: function () {
         return this.css()
     },
-
     getInitialState: function() {
         return {width: 0};
     },
-
     updateDimensions: function() {
         var prueba = document.getElementById("body").offsetWidth;
         this.setState({width: prueba});
-
-
-
     },
     componentDidMount: function() {
         window.addEventListener('resize', this.updateDimensions);
         this.updateDimensions();
     },
-
     render: function(){
         return(
             <div style={this.styles().headerStyle}>
@@ -112,14 +112,12 @@ var Header = React.createClass({
             </div>
         )
     },
-
     update: function()
     {
         this.props.onUpdate();
     }
 
-});
-
+});*/
 
 EmployeeDetail.defaultProps ={id: 1,title:"web Developer", department:"front end Developer" , first_name: "Ron", last_name: "Vrijmoet",img: "test.jpg", office:"amsterdam", profile:"Hi, I am a Front-End Developer"}
 

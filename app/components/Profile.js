@@ -1,16 +1,19 @@
+/*global document require module*/
 /**
  * Created by bethelehem.burka on 19/02/16.
  */
+'use strict';
+
 var React = require('react');
 var SortList = require('../components/SortList');
-var Router = require('react-router');
 var ReactCSS = require('reactcss');
-
-
 
 var SearchBar = React.createClass({
     mixins: [ReactCSS.mixin],
-
+    propTypes: {
+        names: React.PropTypes.object,
+        onUpdate: React.PropTypes.func
+    },
     classes: function() {
         return {
             'default': {
@@ -59,7 +62,9 @@ var SearchBar = React.createClass({
 
 var EmployeeListItem = React.createClass({
     mixins: [ReactCSS.mixin],
-
+    propTypes: {
+        employee: React.PropTypes.object
+    },
     classes: function() {
         return {
             'default': {
@@ -69,11 +74,9 @@ var EmployeeListItem = React.createClass({
             }
         }
     },
-
     styles: function () {
         return this.css()
     },
-
     render:function(){
         return(
 
@@ -92,7 +95,10 @@ var EmployeeListItem = React.createClass({
 });
 var EmployeeList = React.createClass({
     mixins: [ReactCSS.mixin],
-
+    propTypes: {
+        onClick: React.PropTypes.func,
+        names: React.PropTypes.object
+    },
     classes: function() {
         return {
             'default': {
@@ -226,7 +232,9 @@ var Profile= React.createClass({
 
 var LetterItem = React.createClass({
     mixins: [ReactCSS.mixin],
-
+    propTypes: {
+        letter: React.PropTypes.string
+    },
     classes: function() {
         return {
             'default': {

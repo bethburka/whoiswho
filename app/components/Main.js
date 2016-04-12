@@ -1,9 +1,10 @@
-/**
- * Created by bethelehem.burka on 19/02/16.
- */
+/*global require module*/
 var React = require('react');
 
 var Main = React.createClass({
+    propTypes: {
+      children: React.PropTypes.object
+    },
     render: function(){
         return (
             <div className="main-container">

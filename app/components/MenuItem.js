@@ -1,22 +1,23 @@
+/*global require module*/
 /**
  * Created by jose.bustamante on 3/25/2016.
  */
 
 var React = require('react');
-var browserHistory = require('react-router').browserHistory;
 var ReactCSS =require('reactcss');
 
 var MenuItem = React.createClass({
-
     mixins: [ReactCSS.mixin],
-
+    propTypes: {
+        children: React.PropTypes.object,
+        text: React.PropTypes.string
+    },
     classes: function() {
         return {
             'default': {
                 menuStyle: {
                     paddingRight:'10em'
-                },
-
+                }
               }
         }
     },
