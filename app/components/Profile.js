@@ -1,12 +1,12 @@
+/*global document require module*/
 /**
  * Created by bethelehem.burka on 19/02/16.
  */
+'use strict';
+
 var React = require('react');
 var SortList = require('../components/SortList');
-var Router = require('react-router');
 var ReactCSS = require('reactcss');
-
-
 
 var SearchBar = React.createClass({
     mixins: [ReactCSS.mixin],

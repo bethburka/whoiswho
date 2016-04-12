@@ -1,3 +1,4 @@
+/*global require module*/
 /**
  * Created by jose.bustamante on 3/25/2016.
  */

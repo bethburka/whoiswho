@@ -1,3 +1,4 @@
+/*global document require window module*/
 var React = require('react');
 var Profile = require('../components/Profile');
 var SlideMenu = require('../components/SlideMenu');

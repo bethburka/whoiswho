@@ -1,9 +1,9 @@
+/*global require module*/
 /**
  * Created by jose.bustamante on 3/25/2016.
  */
 
 var React = require('react');
-var browserHistory = require('react-router').browserHistory;
 var ReactCSS =require('reactcss');
 
 var MenuItem = React.createClass({
@@ -15,8 +15,7 @@ var MenuItem = React.createClass({
             'default': {
                 menuStyle: {
                     paddingRight:'10em'
-                },
-
+                }
               }
         }
     },

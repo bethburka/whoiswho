@@ -1,3 +1,4 @@
+/*global document window require module */
 /**
  * Created by jose.bustamante on 3/31/2016.
  */
@@ -88,12 +89,8 @@ var Letter = React.createClass({
     updateSortPadding:function(){
         var alpabethHeight = document.getElementById("alphabet").offsetHeight;
 
-        console.log('alphaHight', alpabethHeight);
         var size = ((alpabethHeight-400)/2)/24;
-        console.log('sixe',size);
         this.setState({sortingPadding: size});
-        console.log(this.state.sortingPadding);
-
     },
 
     componentDidMount: function() {
@@ -160,17 +157,19 @@ var SorfList = React.createClass({
         return this.css()
     },
 
-    componentDidMount() {
+    componentDidMount: function() {
         // Decode entities in the URL
         // Sometimes a URL like #/foo#bar will be encoded as #/foo%23bar
         window.location.hash = window.decodeURIComponent(window.location.hash);
-        const scrollToAnchor = () => {
-            const hashParts = window.location.hash.split('#');
+
+        var scrollToAnchor = function() {
+            var hashParts = window.location.hash.split('#');
             if (hashParts.length > 2) {
-                const hash = hashParts.slice(-1)[0];
-                document.querySelector(`#${hash}`).scrollIntoView();
+                var hash = hashParts.slice(-1)[0];
+                document.querySelector('#${'+hash+'}').scrollIntoView();
             }
         };
+
         scrollToAnchor();
         window.onhashchange = scrollToAnchor;
     },

@@ -1,5 +1,6 @@
+/*global document require window module*/
+
 var React = require('react');
-var Router = require('react-router');
 var ReactCSS = require('reactcss');
 
 var  EmployeeDetail = React.createClass({
@@ -10,11 +11,11 @@ var  EmployeeDetail = React.createClass({
         return {
             'default': {
                 liStyle: {
-                    paddingBottom: '10px',
+                    paddingBottom: '10px'
                 },
                 imgStyle:{
                     width:'100%',
-                    height:'100%',
+                    height:'100%'
                 },
                 imgEleStyle:{
                     paddingTop:'3em',
@@ -28,10 +29,6 @@ var  EmployeeDetail = React.createClass({
             }
         }
     },
-
-
-
-
     styles: function () {
         return this.css()
     },
@@ -88,23 +85,17 @@ var Header = React.createClass({
     styles: function () {
         return this.css()
     },
-
     getInitialState: function() {
         return {width: 0};
     },
-
     updateDimensions: function() {
         var prueba = document.getElementById("body").offsetWidth;
         this.setState({width: prueba});
-
-
-
     },
     componentDidMount: function() {
         window.addEventListener('resize', this.updateDimensions);
         this.updateDimensions();
     },
-
     render: function(){
         return(
             <div style={this.styles().headerStyle}>
@@ -112,7 +103,6 @@ var Header = React.createClass({
             </div>
         )
     },
-
     update: function()
     {
         this.props.onUpdate();
