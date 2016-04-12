@@ -8,7 +8,9 @@ var React = require('react');
 var MenuItem = require('../components/MenuItem')
 
 var Menu = React.createClass({
-
+    propTypes: {
+        style: React.PropTypes.object
+    },
     render: function(){
         return <div style={this.props.style}>
             <div>

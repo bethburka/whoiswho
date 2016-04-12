@@ -8,6 +8,9 @@ var React = require('react');
 var Menu = require('../components/Menu');
 
 var SidePanel = React.createClass ({
+    propTypes: {
+        style: React.PropTypes.object
+    },
     render: function() {
         return(
             <div style={this.props.style}>

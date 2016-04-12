@@ -7,9 +7,11 @@ var React = require('react');
 var ReactCSS =require('reactcss');
 
 var MenuItem = React.createClass({
-
     mixins: [ReactCSS.mixin],
-
+    propTypes: {
+        children: React.PropTypes.object,
+        text: React.PropTypes.string
+    },
     classes: function() {
         return {
             'default': {

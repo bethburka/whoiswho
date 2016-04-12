@@ -96,8 +96,10 @@ var Home = React.createClass({
 
 
 var Body = React.createClass({
-
-
+    propTypes: {
+        onUpdate: React.PropTypes.func,
+        style: React.PropTypes.object
+    },
     onUpdate: function(){
         this.props.onUpdate();
     },
@@ -114,7 +116,10 @@ var Body = React.createClass({
 
 var Header = React.createClass({
     mixins: [ReactCSS.mixin],
-
+    propTypes: {
+        text: React.PropTypes.string,
+        onUpdate: React.PropTypes.func
+    },
     classes: function() {
         return {
             'default': {
@@ -161,7 +166,7 @@ var Header = React.createClass({
         return(
             <div style={this.styles().headerStyle}>
                 <h1 className="title" style={this.styles().h1Style}>{this.props.text}</h1>
-                <label for="menuToggle" className="menu-icon"  onClick={this.update} style={this.styles().labelButtonStyle}>&#9776; </label>
+                <label htmlFor="menuToggle" className="menu-icon"  onClick={this.update} style={this.styles().labelButtonStyle}>&#9776; </label>
             </div>
         )
     },

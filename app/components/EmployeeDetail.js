@@ -1,12 +1,18 @@
-/*global document require window module*/
+/*global require module*/
 
 var React = require('react');
 var ReactCSS = require('reactcss');
 
 var  EmployeeDetail = React.createClass({
-
     mixins: [ReactCSS.mixin],
-
+    propTypes: {
+        img: React.PropTypes.string,
+        first_name: React.PropTypes.string,
+        last_name: React.PropTypes.string,
+        title: React.PropTypes.string,
+        office: React.PropTypes.string,
+        profile: React.PropTypes.string
+    },
     classes: function() {
         return {
             'default': {
@@ -57,9 +63,12 @@ var  EmployeeDetail = React.createClass({
     }
 });
 
-var Header = React.createClass({
+/*var Header = React.createClass({
     mixins: [ReactCSS.mixin],
-
+    propTypes: {
+        text: React.PropTypes.string,
+        onUpdate: React.PropTypes.func
+    },
     classes: function() {
         return {
             'default': {
@@ -108,8 +117,7 @@ var Header = React.createClass({
         this.props.onUpdate();
     }
 
-});
-
+});*/
 
 EmployeeDetail.defaultProps ={id: 1,title:"web Developer", department:"front end Developer" , first_name: "Ron", last_name: "Vrijmoet",img: "test.jpg", office:"amsterdam", profile:"Hi, I am a Front-End Developer"}
 
