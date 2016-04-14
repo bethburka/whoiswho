@@ -105,13 +105,21 @@ var EmployeeList = React.createClass({
                 ulStyle: {
                     padding :'0px',
                     listStyleType: 'none',
-                    float:'left'
+                    float:'left',
+                    paddingTop:'30px'
                 },
                 divEmployeeListStyle:{
                     overflow: 'hidden',
-                    paddingTop:'35px',
+                    paddingTop:'26px',
                     width: '95%',
                     display: 'inline-block'
+                },
+                divOpacityStyle:{
+                    height:'25px',
+                    width: '100%',
+                    background:'rgba(255,255,255,0.7)',
+                    position:'fixed',
+                    paddingTop:'10px'
                 }
             }
         }
@@ -139,10 +147,11 @@ var EmployeeList = React.createClass({
 
         return(
             <div id="list" style={this.styles().divEmployeeListStyle}>
-            <ul style={this.styles().ulStyle}>
-                {arrayLi}
-            </ul>
-                </div>
+                <div style={this.styles().divOpacityStyle}>{this.props.letter}</div>
+                <ul style={this.styles().ulStyle}>
+                    {arrayLi}
+                </ul>
+            </div>
 
         );
     }
@@ -169,6 +178,27 @@ var Profile= React.createClass({
         this.setState({arrayEmployee:arrayMatches});
     },
 
+    updateListHead: function () {
+        var sectionHeads = document.getElementsByClassName("sectionhead");
+        var lastLetter ="";
+        for (var i = 0 ; i < sectionHeads.length; i++) {
+            if(sectionHeads[i].getBoundingClientRect().top < 100){
+                lastLetter = sectionHeads[i].id;
+            }
+        }
+        this.setState({letter: lastLetter});
+
+    },
+
+    componentDidMount: function () {
+        document.addEventListener('scroll', this.updateListHead);
+        this.updateListHead();
+    },
+
+    componentWillUnmount() {
+        document.removeEventListener('scroll', this.updateListHead);
+    },
+
     getInitialState: function()
     {
         return ({
@@ -190,7 +220,8 @@ var Profile= React.createClass({
                 {id: 14, head_of_department: "", first_name: "Wilviu", last_name: "Agapi"},
                 {id: 15, head_of_department: "", first_name: "Zick ", last_name: "Mueller"},
                 {id: 100, head_of_department: "", first_name: "Zilviu", last_name: "Agapi"}
-            ]
+            ],
+            letter:'A'
         });
     },
 
@@ -221,7 +252,7 @@ var Profile= React.createClass({
 
             <div style={this.styles().profileStyle}>
                 <SearchBar names={Employees} onUpdate={this.onUpdate}/>
-                <EmployeeList names={this.state.arrayEmployee} />
+                <EmployeeList names={this.state.arrayEmployee} letter={this.state.letter}/>
                 <SortList/>
 
 
@@ -251,7 +282,7 @@ var LetterItem = React.createClass({
 
     render:function () {
         return(
-            <li id={this.props.letter} style={this.styles().liStyle}>{this.props.letter}</li>
+            <li id={this.props.letter} style={this.styles().liStyle} className="sectionhead">{this.props.letter}</li>
         );
     }
 });

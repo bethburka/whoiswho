@@ -16,12 +16,16 @@ var  EmployeeDetail = React.createClass({
     classes: function() {
         return {
             'default': {
+                arrowSpamStyle:{
+                  paddingTop:'20px'
+                },
                 liStyle: {
                     paddingBottom: '10px'
                 },
                 imgStyle:{
                     width:'100%',
                     height:'100%'
+
                 },
                 imgEleStyle:{
                     paddingTop:'3em',
@@ -35,6 +39,7 @@ var  EmployeeDetail = React.createClass({
             }
         }
     },
+
     styles: function () {
         return this.css()
     },
@@ -43,7 +48,7 @@ var  EmployeeDetail = React.createClass({
         return(
             <div>
                 <a href="#">
-                    <span className="glyphicon glyphicon-menu-left"></span>
+                    <span className="glyphicon glyphicon-menu-left" style={this.styles().arrowSpamStyle}></span>
                 </a>
                 <h2 style={this.styles().headerStyle}>Profile</h2>
 
@@ -63,61 +68,6 @@ var  EmployeeDetail = React.createClass({
     }
 });
 
-/*var Header = React.createClass({
-    mixins: [ReactCSS.mixin],
-    propTypes: {
-        text: React.PropTypes.string,
-        onUpdate: React.PropTypes.func
-    },
-    classes: function() {
-        return {
-            'default': {
-                labelButtonStyle: {
-                    float: 'right',
-                    paddingTop:'10px'
-                },
-                h1Style: {
-                    display: 'inline'
-                },
-                headerStyle:{
-                    padding: '10px',
-                    position: 'fixed',
-                    width: this.state.width,
-                    height: '60px',
-                    background: 'white',
-                    textAlign:'center'
-                }
-            }
-        }
-    },
-
-    styles: function () {
-        return this.css()
-    },
-    getInitialState: function() {
-        return {width: 0};
-    },
-    updateDimensions: function() {
-        var prueba = document.getElementById("body").offsetWidth;
-        this.setState({width: prueba});
-    },
-    componentDidMount: function() {
-        window.addEventListener('resize', this.updateDimensions);
-        this.updateDimensions();
-    },
-    render: function(){
-        return(
-            <div style={this.styles().headerStyle}>
-                <h1 className="title" style={this.styles().h1Style}>{this.props.text}</h1>
-            </div>
-        )
-    },
-    update: function()
-    {
-        this.props.onUpdate();
-    }
-
-});*/
 
 EmployeeDetail.defaultProps ={id: 1,title:"web Developer", department:"front end Developer" , first_name: "Ron", last_name: "Vrijmoet",img: "test.jpg", office:"amsterdam", profile:"Hi, I am a Front-End Developer"}
 

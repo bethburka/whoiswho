@@ -69,6 +69,10 @@ var Home = React.createClass({
         this.updateMenuRightPos();
     },
 
+    componentWillUnmount() {
+        document.removeEventListener('resize', this.updateMenuRightPos);
+    },
+
     getInitialState: function()
     {
         return ({
@@ -161,6 +165,11 @@ var Header = React.createClass({
         window.addEventListener('resize', this.updateDimensions);
         this.updateDimensions();
     },
+
+    componentWillUnmount() {
+        document.removeEventListener('resize', this.updateDimensions);
+    },
+
 
     render: function(){
         return(

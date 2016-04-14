@@ -6,7 +6,9 @@
 'use strict';
 
 var React = require('react');
+var ReactDom = require('react-dom');
 var ReactCSS = require('reactcss');
+var Router = require('react-router');
 
 var Sort = React.createClass({
     mixins: [ReactCSS.mixin],
@@ -58,17 +60,18 @@ var Letter = React.createClass({
             'default': {
                 actived: {
                     width: '30px',
+                    height: this.state.sortingPadding,
                     display: 'block',
+                    color: '#337ab7',
                     textAlign:'center',
-                    marginTop: this.state.sortingPadding,
-                   marginBottom: this.state.sortingPadding// height/24 -20px
+                    margin:'0'
                 },
                 deactivate: {
                     color: '#D8D8D8'
                 },
                 divStyle:{
                     width:'30px',
-                   height:'80%',
+                    height:'100%',
                     margin: 'auto'
                 }
             }
@@ -78,6 +81,7 @@ var Letter = React.createClass({
     styles: function () {
         return this.css()
     },
+    
 
     getInitialState: function()
     {
@@ -88,48 +92,88 @@ var Letter = React.createClass({
 
     updateSortPadding:function(){
         var alpabethHeight = document.getElementById("alphabet").offsetHeight;
-
-        var size = ((alpabethHeight-400)/2)/24;
+        var size = ((alpabethHeight/100)*80)/26;
         this.setState({sortingPadding: size});
     },
 
     componentDidMount: function() {
         window.addEventListener('resize', this.updateSortPadding);
-
         this.updateSortPadding();
     },
 
+    componentWillUnmount() {
+        document.removeEventListener('resize', this.updateSortPadding);
+    },
 
+
+    pClicked: function (letter, event) {
+        var el = document.getElementById(letter);
+        //el.scrollIntoView(); //next function make scrollIntoView but with smooth effect.
+        if(el != null){
+            clearInterval(this.scrollInterval);
+            var startScroll = document.body.scrollTop;
+            var i = document.body.scrollTop;
+            var goTo = el.offsetTop - 95; // -95 is the size of the fixed header, so the element we want to screoll to never is showed under the header.
+            console.log('startScroll', startScroll, 'goTo', goTo);
+            var vel;
+            if(goTo < 0){goTo = 10;}
+            if(goTo > document.body.offsetHeight - window.innerHeight){goTo = document.body.offsetHeight - window.innerHeight;} //this help when the element we want to scroll to is lower than the maximun scroll posible.
+            var that = this;
+            this.scrollInterval = setInterval(function () {
+                if(startScroll > goTo){
+                    startScroll = document.body.scrollTop;
+                    vel= (startScroll - goTo)/10;
+                    i -= vel;
+                    if(i <= goTo){clearInterval(that.scrollInterval); console.log('valor i:',i, 'valor goTo', goTo);}
+
+                }else{
+                    startScroll = document.body.scrollTop;
+                    vel= (goTo - startScroll)/10;
+                    i += vel;
+                    if(i >= goTo){clearInterval(that.scrollInterval); console.log('valor i:',i, 'valor goTo', goTo);}
+
+                }
+                window.scrollTo(0, i);
+
+             }, 100)
+        };
+
+
+    },
 
 
     render: function () {
 
+
         return(
         <div id="alphabet" style={this.styles().divStyle}>
-                <a href="#A" style={this.styles().actived}> A </a>
-                <a href="#B" style={this.styles().actived}> B </a>
-                <a href="#C" style={this.styles().actived}> C </a>
-                <a href="#D" style={this.styles().actived}> D </a>
-                <a href="#E" style={this.styles().actived}> E </a>
-                <a href="#F" style={this.styles().actived}> F </a>
-                <a href="#G" style={this.styles().actived}> G </a>
-                <a href="#H" style={this.styles().actived}> H </a>
-                <a href="#I" style={this.styles().actived}> I </a>
-                <a href="#J" style={this.styles().actived}> J </a>
-                <a href="#K" style={this.styles().actived}> K </a>
-                <a href="#L" style={this.styles().actived}> L </a>
-                <a href="#M" style={this.styles().actived}> M </a>
-                <a href="#N" style={this.styles().actived}> N </a>
-                <a href="#O" style={this.styles().actived}> O </a>
-                <a href="#P" style={this.styles().actived}> P </a>
-                <a href="#Q" style={this.styles().actived}> Q </a>
-                <a href="#R" style={this.styles().actived}> R </a>
-                <a href="#S" style={this.styles().actived}> S </a>
-                <a href="#T" style={this.styles().actived}> T </a>
-                <a href="#U" style={this.styles().actived}> U </a>
-                <a href="#V" style={this.styles().actived}> V </a>
-                <a href="#W" style={this.styles().actived}> W </a>
-                <a href="#Z" style={this.styles().actived}> Z </a>
+                <p id="Asort" style={this.styles().actived} onClick={this.pClicked.bind(this, 'A')}> A </p>
+                <p id="Bsort" style={this.styles().actived} onClick={this.pClicked.bind(this, 'B')}> B </p>
+                <p id="Csort" style={this.styles().actived} onClick={this.pClicked.bind(this, 'C')}> C </p>
+                <p id="Dsort" style={this.styles().actived} onClick={this.pClicked.bind(this, 'D')}> D </p>
+                <p id="Esort" style={this.styles().actived} onClick={this.pClicked.bind(this, 'E')}> E </p>
+                <p id="Fsort" style={this.styles().actived} onClick={this.pClicked.bind(this, 'F')}> F </p>
+                <p id="Gsort" style={this.styles().actived} onClick={this.pClicked.bind(this, 'G')}> G </p>
+                <p id="Hsort" style={this.styles().actived} onClick={this.pClicked.bind(this, 'H')}> H </p>
+                <p id="Isort" style={this.styles().actived} onClick={this.pClicked.bind(this, 'I')}> I </p>
+                <p id="Jsort" style={this.styles().actived} onClick={this.pClicked.bind(this, 'J')}> J </p>
+                <p id="Ksort" style={this.styles().actived} onClick={this.pClicked.bind(this, 'K')}> K </p>
+                <p id="Lsort" style={this.styles().actived} onClick={this.pClicked.bind(this, 'L')}> L </p>
+                <p id="Msort" style={this.styles().actived} onClick={this.pClicked.bind(this, 'M')}> M </p>
+                <p id="Nsort" style={this.styles().actived} onClick={this.pClicked.bind(this, 'N')}> N </p>
+                <p id="Osort" style={this.styles().actived} onClick={this.pClicked.bind(this, 'O')}> O </p>
+                <p id="Psort" style={this.styles().actived} onClick={this.pClicked.bind(this, 'P')}> P </p>
+                <p id="Qsort" style={this.styles().actived} onClick={this.pClicked.bind(this, 'Q')}> Q </p>
+                <p id="Rsort" style={this.styles().actived} onClick={this.pClicked.bind(this, 'R')}> R </p>
+                <p id="Ssort" style={this.styles().actived} onClick={this.pClicked.bind(this, 'S')}> S </p>
+                <p id="Tsort" style={this.styles().actived} onClick={this.pClicked.bind(this, 'T')}> T </p>
+                <p id="Uv" style={this.styles().actived} onClick={this.pClicked.bind(this, 'U')}> U </p>
+                <p id="Vsort" style={this.styles().actived} onClick={this.pClicked.bind(this, 'V')}> V </p>
+                <p id="Wsort" style={this.styles().actived} onClick={this.pClicked.bind(this, 'W')}> W </p>
+                <p id="Xsort" style={this.styles().actived} onClick={this.pClicked.bind(this, 'X')}> X </p>
+                <p id="Ysort" style={this.styles().actived} onClick={this.pClicked.bind(this, 'Y')}> Y </p>
+                <p id="Zsort" style={this.styles().actived} onClick={this.pClicked.bind(this, 'Z')}> Z </p>
+
 
         </div>
         );
@@ -157,22 +201,7 @@ var SorfList = React.createClass({
         return this.css()
     },
 
-    componentDidMount: function() {
-        // Decode entities in the URL
-        // Sometimes a URL like #/foo#bar will be encoded as #/foo%23bar
-        window.location.hash = window.decodeURIComponent(window.location.hash);
 
-        var scrollToAnchor = function() {
-            var hashParts = window.location.hash.split('#');
-            if (hashParts.length > 2) {
-                var hash = hashParts.slice(-1)[0];
-                document.querySelector('#${'+hash+'}').scrollIntoView();
-            }
-        };
-
-        scrollToAnchor();
-        window.onhashchange = scrollToAnchor;
-    },
 
     render: function () {
 
