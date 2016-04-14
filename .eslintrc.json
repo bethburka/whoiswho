@@ -1,6 +1,51 @@
 {
+    "parserOptions": {
+        "ecmaVersion": 7,
+        "sourceType": "module",
+        "ecmaFeatures": {
+            "jsx": true
+        }
+    },
     "plugins": [
         "react"
     ],
-    "extends": ["eslint:recommended", "plugin:react/recommended"]
+    "extends": ["eslint:recommended", "plugin:react/recommended"],
+    "rules": {
+        "comma-dangle" : 0,
+        "prefer-const": ["warn", {"destructuring": "any"}],
+        "no-var": "warn",
+        "no-new-object": "error",
+        "object-shorthand": "warn",
+        "quotes": ["warn", "single"],
+        "quote-props": ["warn", "as-needed"],
+        "no-array-constructor": "warn",
+        "array-callback-return": "warn",
+        "react/jsx-sort-props": "warn",
+        "no-param-reassign": "warn",
+        "prefer-arrow-callback": "warn",
+        "no-dupe-class-members": "error",
+        "no-duplicate-imports": "error",
+        "no-iterator": "error",
+        "dot-notation": "error",
+        "eqeqeq": "warn",
+        "no-case-declarations": "error",
+        "no-unneeded-ternary": "error",
+        "brace-style": ["warn", "stroustrup", { "allowSingleLine": true }],
+        "indent": "warn",
+        "keyword-spacing": ["warn", {"before": true, "after": true, "overrides": {}}],
+        "newline-per-chained-call": ["error", {"ignoreChainWithDepth": 3}],
+        "space-in-parens": ["warn", "never"],
+        "array-bracket-spacing": ["error", "never"],
+        "object-curly-spacing": ["error", "never"],
+        "max-len": ["warn", 120, 4, {"ignoreUrls": true, "ignoreComments": true}],
+        "comma-style": ["warn", "last"],
+        "camelcase": ["warn", {"properties": "always"}],
+        "no-underscore-dangle": "warn"
+    },
+    "settings": {
+        "react": {
+            "pragma": "React",
+            "version": "0.14.7"
+        }
+    }
 }

@@ -1,7 +1,5 @@
 /*global document require module*/
-/**
- * Created by bethelehem.burka on 19/02/16.
- */
+
 'use strict';
 
 var React = require('react');
@@ -11,7 +9,7 @@ var ReactCSS = require('reactcss');
 var SearchBar = React.createClass({
     mixins: [ReactCSS.mixin],
     propTypes: {
-        names: React.PropTypes.object,
+        names: React.PropTypes.array,
         onUpdate: React.PropTypes.func
     },
     classes: function() {
@@ -97,7 +95,8 @@ var EmployeeList = React.createClass({
     mixins: [ReactCSS.mixin],
     propTypes: {
         onClick: React.PropTypes.func,
-        names: React.PropTypes.object
+        names: React.PropTypes.array,
+        letter: React.PropTypes.string
     },
     classes: function() {
         return {
@@ -138,12 +137,13 @@ var EmployeeList = React.createClass({
         this.props.names.forEach(function (employee) {
             if(currentLetter != employee.first_name.charAt(0)){
                 currentLetter = employee.first_name.charAt(0);
-                arrayLi.push(<LetterItem letter={currentLetter}/>);
+                arrayLi.push(<LetterItem key={currentLetter} letter={currentLetter}/>);
                 arrayLi.push(<EmployeeListItem key={employee.id} onClick={onClickfunc} employee={employee} />);
             }else{
                 arrayLi.push(<EmployeeListItem key={employee.id} onClick={onClickfunc} employee={employee} />);
             }
         });
+        
 
         return(
             <div id="list" style={this.styles().divEmployeeListStyle}>
@@ -159,7 +159,9 @@ var EmployeeList = React.createClass({
 
 var Profile= React.createClass({
     mixins: [ReactCSS.mixin],
-
+    propTypes: {
+        names: React.PropTypes.array
+    },
     classes: function() {
         return {
             'default': {
@@ -195,7 +197,7 @@ var Profile= React.createClass({
         this.updateListHead();
     },
 
-    componentWillUnmount() {
+    componentWillUnmount: function() {
         document.removeEventListener('scroll', this.updateListHead);
     },
 

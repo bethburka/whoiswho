@@ -1,4 +1,4 @@
-/*global document window require module */
+/*global document window require module clearInterval setInterval */
 /**
  * Created by jose.bustamante on 3/31/2016.
  */
@@ -6,9 +6,7 @@
 'use strict';
 
 var React = require('react');
-var ReactDom = require('react-dom');
 var ReactCSS = require('reactcss');
-var Router = require('react-router');
 
 var Sort = React.createClass({
     mixins: [ReactCSS.mixin],
@@ -81,7 +79,7 @@ var Letter = React.createClass({
     styles: function () {
         return this.css()
     },
-    
+
 
     getInitialState: function()
     {
@@ -101,12 +99,12 @@ var Letter = React.createClass({
         this.updateSortPadding();
     },
 
-    componentWillUnmount() {
+    componentWillUnmount: function() {
         document.removeEventListener('resize', this.updateSortPadding);
     },
 
 
-    pClicked: function (letter, event) {
+    pClicked: function (letter) {
         var el = document.getElementById(letter);
         //el.scrollIntoView(); //next function make scrollIntoView but with smooth effect.
         if(el != null){
@@ -114,7 +112,6 @@ var Letter = React.createClass({
             var startScroll = document.body.scrollTop;
             var i = document.body.scrollTop;
             var goTo = el.offsetTop - 95; // -95 is the size of the fixed header, so the element we want to screoll to never is showed under the header.
-            console.log('startScroll', startScroll, 'goTo', goTo);
             var vel;
             if(goTo < 0){goTo = 10;}
             if(goTo > document.body.offsetHeight - window.innerHeight){goTo = document.body.offsetHeight - window.innerHeight;} //this help when the element we want to scroll to is lower than the maximun scroll posible.
@@ -124,19 +121,19 @@ var Letter = React.createClass({
                     startScroll = document.body.scrollTop;
                     vel= (startScroll - goTo)/10;
                     i -= vel;
-                    if(i <= goTo){clearInterval(that.scrollInterval); console.log('valor i:',i, 'valor goTo', goTo);}
+                    if(i <= goTo){clearInterval(that.scrollInterval);}
 
                 }else{
                     startScroll = document.body.scrollTop;
                     vel= (goTo - startScroll)/10;
                     i += vel;
-                    if(i >= goTo){clearInterval(that.scrollInterval); console.log('valor i:',i, 'valor goTo', goTo);}
+                    if(i >= goTo){clearInterval(that.scrollInterval);}
 
                 }
                 window.scrollTo(0, i);
 
              }, 100)
-        };
+        }
 
 
     },
