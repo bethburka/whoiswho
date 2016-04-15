@@ -103,7 +103,8 @@ var Letter = React.createClass({
     },
 
     componentWillUnmount: function() {
-        document.removeEventListener('resize', this.updateSortPadding);
+        window.removeEventListener('resize', this.updateSortPadding);
+
     },
 
 
@@ -130,7 +131,8 @@ var Letter = React.createClass({
                     startScroll = document.body.scrollTop;
                     vel= (goTo - startScroll)/10;
                     i += vel;
-                    if(i >= goTo){clearInterval(that.scrollInterval);}
+                    if(i >= goTo){clearInterval(that.scrollInterval);
+                    }
 
                 }
                 window.scrollTo(0, i);

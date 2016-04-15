@@ -15,12 +15,16 @@ var SearchBar = React.createClass({
     classes: function() {
         return {
             'default': {
-                searchBarStyle: {
+                searchBarDivStyle: {
                     position: 'fixed',
                     background: 'white',
                     width: '95%',
-                    borderRadius:'15px'
-
+                    paddingBottom:'20px',
+                },
+                searchBarStyle: {
+                    borderRadius:'5px',
+                    background:'#e5e5e5',
+                    border:'1px solid #e5e5e5'
                 }
             }
         }
@@ -49,8 +53,8 @@ var SearchBar = React.createClass({
 
     render: function(){
         return (
-                <div style={this.styles().searchBarStyle}>
-                    <input type="text" placeholder="Search"  onChange={this.searchHandler}/>
+                <div style={this.styles().searchBarDivStyle}>
+                    <input type="text" placeholder="Search"  onChange={this.searchHandler} style={this.styles().searchBarStyle}/>
                 </div>
 
         )
@@ -193,12 +197,28 @@ var Profile= React.createClass({
     },
 
     componentDidMount: function () {
-        document.addEventListener('scroll', this.updateListHead);
+        window.addEventListener('scroll', this.throttle);  //this.throttle(this.updateListHead, 100), true
         this.updateListHead();
     },
 
     componentWillUnmount: function() {
-        document.removeEventListener('scroll', this.updateListHead);
+        window.removeEventListener('scroll', this.throttle);
+
+    },
+
+
+    throttle: function() {
+        var wait = false;
+        var limit = 50;
+        return function () {
+            if (!wait) {
+                this.updateListHead;
+                wait = true;
+                setTimeout(function () {
+                    wait = false;
+                }, limit);
+            }
+        }
     },
 
     getInitialState: function()

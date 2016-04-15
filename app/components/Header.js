@@ -21,7 +21,8 @@ var Header = React.createClass({
                     paddingTop:'10px'
                 },
                 h1Style: {
-                    display: 'inline'
+                    display: 'inline',
+                    fontFamily:'cursive'
                 },
                 headerStyle:{
                     padding: '10px',
@@ -56,7 +57,7 @@ var Header = React.createClass({
     },
 
     componentWillUnmount: function() {
-        document.removeEventListener('resize', this.updateDimensions);
+        window.removeEventListener('resize', this.updateDimensions);
     },
 
 
