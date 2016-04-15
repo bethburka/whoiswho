@@ -2,28 +2,107 @@
  * Created by bethelehem.burka on 26/02/16.
  */
 var React = require('react');
-
+var Header = require('../components/Header');
+var SlideMenu = require('../components/SlideMenu');
+var EmployeeDetail = require('../components/EmployeeDetail');
+var ReactCSS = require('reactcss');
 
 
 var EmployeePage = React.createClass({
 
-    componentDidMount:function(){
-        this.props.names.findById(this.props.employee.id).handleClick(function(id)
-        {
-            this.setState({employee:id});
-        }.bind(this));
+    mixins: [ReactCSS.mixin],
+
+    classes: function() {
+        return {
+            'default': {
+                menuHiddenTrue: {
+                    position: 'fixed',
+                    width:'95%',
+                    transition:'right .5s',
+                    top: '90',
+                    right: '-95%'
+                },
+                menuHiddenFalse: {
+                    position: 'fixed',
+                    width:'95%',
+                    transition:'right 0.5s',
+                    top: '90',
+                    right: this.state.menuRightWidth//I need the -5% of home width
+                },
+                bodyHiddenTrue:{
+                    width:'100%',
+                    height: '100%',
+                    marginLeft:'-95%',
+                    transition:'margin-left .5s',
+                    overflow: 'hidden'
+                },
+                bodyHiddenFalse:{
+                    width:'100%',
+                    height: '100%',
+                    marginLeft:'0px',
+                    transition:'margin-left .5s',
+                    overflow: 'hidden'
+
+                },
+                homeStyle:{
+                    width:'100%',
+                    height:'100%',
+                    overflow: 'hidden'
+                }
+
+            }
+        }
+    },
+    // This is necessary to make all the classes auto-activate
+    styles: function () {
+        return this.css()
     },
 
-    render(){
-        <div>
-            <ul>
-                <li> <img className="" src={}/></li>
-                <li> <h4>{this.state.employee.first_name}{this.state.employee.last_name}</h4></li>
-                <li>  <p>{this.state.employee.head_of_department}</p></li>
-            </ul>
-        </div>
+    updateMenuRightPos: function () {
+        var container = document.getElementById("container");
+        var style = container.currentStyle || window.getComputedStyle(container);
+        var margin = parseInt(style.marginLeft.substring(0,style.marginLeft.length -2));
+        var padding = parseInt(style.paddingLeft.substring(0,style.paddingLeft.length -2));
+        var width = container.offsetWidth;
+        var size = (margin + padding + (width*0.05))*-1;
+        this.setState({menuRightWidth: size});
 
+    },
 
+    componentDidMount: function() {
+        window.addEventListener('resize', this.updateMenuRightPos);
+        this.updateMenuRightPos();
+    },
+
+    componentWillUnmount: function() {
+        document.removeEventListener('resize', this.updateMenuRightPos);
+    },
+
+    getInitialState: function()
+    {
+        return ({
+            mHidden: true,
+            menuRightWidth: 0
+        });
+    },
+
+    onUpdate: function(){
+        if (this.state.mHidden)
+            this.setState({mHidden: false});
+        else
+            this.setState({mHidden: true});
+    },
+
+    render: function () {
+        return(
+            <div id="home" style={this.styles().homeStyle}>
+                <div id="body" onUpdate={this.onUpdate} style={this.state.mHidden ? this.styles().bodyHiddenFalse : this.styles().bodyHiddenTrue}>
+                    <Header text="Profile" onUpdate={this.onUpdate} />
+                    <EmployeeDetail/>
+                </div>
+                <SlideMenu id="slideMenu" style={this.state.mHidden ? this.styles().menuHiddenTrue : this.styles().menuHiddenFalse}/>
+            </div>
+        )
     }
 });
 

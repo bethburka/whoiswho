@@ -17,10 +17,12 @@ var  EmployeeDetail = React.createClass({
         return {
             'default': {
                 arrowSpamStyle:{
-                  paddingTop:'20px'
+                  paddingTop:'20px',
+                    position:'fixed'
                 },
-                liStyle: {
-                    paddingBottom: '10px'
+                divMainStyle: {
+                    paddingBottom: '10px',
+                    paddingTop:'60px'
                 },
                 imgStyle:{
                     width:'100%',
@@ -50,9 +52,7 @@ var  EmployeeDetail = React.createClass({
                 <a href="#">
                     <span className="glyphicon glyphicon-menu-left" style={this.styles().arrowSpamStyle}></span>
                 </a>
-                <h2 style={this.styles().headerStyle}>Profile</h2>
-
-                <li style={this.styles().liStyle} className="list-unstyled" >
+                <div style={this.styles().divMainStyle} className="list-unstyled" >
                     <div style={this.styles().imgStyle}>
                         <img style ={this.styles().imgEleStyle}  src={this.props.img} />
                     </div>
@@ -61,7 +61,7 @@ var  EmployeeDetail = React.createClass({
                     <h4> Office: {this.props.office}</h4> <br />
                     <h4> Profile: {this.props.profile}</h4>
 
-                </li>
+                </div>
             </div>
 
         );
