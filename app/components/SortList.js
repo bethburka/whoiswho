@@ -60,9 +60,12 @@ var Letter = React.createClass({
                     width: '30px',
                     height: this.state.sortingPadding,
                     display: 'block',
-                    color: '#337ab7',
                     textAlign:'center',
-                    margin:'0'
+                    margin:'0',
+                    textDecoration:'none',
+                    color:'#000',
+                    fontFamily:'Century Gothic',
+                    fontSize:'1.3em'
                 },
                 deactivate: {
                     color: '#D8D8D8'
