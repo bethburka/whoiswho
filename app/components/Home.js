@@ -71,7 +71,7 @@ var Home = React.createClass({
     },
 
     componentWillUnmount: function() {
-        document.removeEventListener('resize', this.updateMenuRightPos);
+        window.removeEventListener('resize', this.updateMenuRightPos);
     },
 
     getInitialState: function()
